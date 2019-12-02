@@ -8,20 +8,26 @@ import (
 
 // 一些常量
 var (
-	TokenExpired     = errors.New("Token is expired")
+	// TokenExpired ...
+	TokenExpired = errors.New("Token is expired")
+	// TokenNotValidYet ...
 	TokenNotValidYet = errors.New("Token not active yet")
-	TokenMalformed   = errors.New("That's not even a token")
-	TokenInvalid     = errors.New("Couldn't handle this token:")
+	// TokenMalformed ...
+	TokenMalformed = errors.New("That's not even a token")
+	// TokenInvalid ...
+	TokenInvalid = errors.New("Couldn't handle this token:")
 )
 
+// MapData ...
 type MapData map[string]interface{}
 
 // 载荷，可以加一些自己需要的信息
 type CustomClaims struct {
 	jwtlib.StandardClaims
-	Data   MapData
+	Data MapData
 }
 
+// Options ...
 type Options struct {
 	Secret string `json:"secret"`
 	Expire int64  `json:"expire"`
