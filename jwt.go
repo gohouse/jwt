@@ -24,7 +24,7 @@ type MapData map[string]interface{}
 // 载荷，可以加一些自己需要的信息
 type CustomClaims struct {
 	jwtlib.StandardClaims
-	Data MapData
+	UserData MapData
 }
 
 // Options ...
@@ -41,6 +41,12 @@ type JWT struct {
 
 // 新建一个jwt实例
 func NewJWT(o *Options) *JWT {
+	if o.Secret == "" {
+		panic("secret can't be empty")
+	}
+	if o.Expire == 0 {
+		o.Expire = 60 * 60 * 8
+	}
 	return &JWT{
 		Options:    o,
 		SigningKey: []byte(o.Secret),

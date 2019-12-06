@@ -24,7 +24,7 @@ func TestJWT_CreateToken(t *testing.T) {
 	})
 	token,err := j.CreateToken(CustomClaims{
 		StandardClaims: jwt.StandardClaims{Issuer:"fizzday"},
-		Data:   MapData{"mobile":13212341234,"role":"admin"},
+		UserData: MapData{"mobile":13212341234,"role":"admin"},
 	})
 	if err!=nil {
 		t.Error(err.Error())
@@ -41,7 +41,7 @@ func TestJWT_RefreshToken(t *testing.T) {
 	})
 	token,err := j.CreateToken(CustomClaims{
 		StandardClaims: jwt.StandardClaims{Issuer:"fizzday"},
-		Data:   MapData{"mobile":13212341234,"role":"admin"},
+		UserData:   MapData{"mobile":13212341234,"role":"admin"},
 	})
 	if err!=nil {
 		t.Error(err.Error())
@@ -64,7 +64,7 @@ func TestJWT_ParseToken(t *testing.T) {
 	})
 	token,err := j.CreateToken(CustomClaims{
 		StandardClaims: jwt.StandardClaims{Issuer:"fizzday"},
-		Data:   MapData{"mobile":13212341234,"role":"admin"},
+		UserData:   MapData{"mobile":13212341234,"role":"admin"},
 	})
 	if err!=nil {
 		t.Error(err.Error())
